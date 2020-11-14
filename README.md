@@ -29,9 +29,9 @@ https://github.com/cloose/CuteMarkEd/wiki/Build-Instructions
 
 ##### Status
 
-| Linux | Windows |
-| ----- | ------- |
-| [![Build Status](https://travis-ci.org/cloose/CuteMarkEd.png)](https://travis-ci.org/cloose/CuteMarkEd) | [![](https://ci.appveyor.com/api/projects/status/github/cloose/CuteMarkEd)](https://ci.appveyor.com/project/cloose/cutemarked) |
+| Windows |
+| ------- |
+| [![Build status](https://ci.appveyor.com/api/projects/status/8vsbbs55va1bqan8?svg=true)](https://ci.appveyor.com/project/shunf4/cutemarked-ng) |
 
 [![Stories in Ready](https://badge.waffle.io/cloose/CuteMarkEd.png?label=ready)](https://waffle.io/cloose/CuteMarkEd)
 
