@@ -64,11 +64,12 @@ void HtmlViewSynchronizer::webViewScrolled()
 //    rememberScrollBarPos();
 }
 
+//disabled for now.
 void HtmlViewSynchronizer::scrollValueChanged(int value)
 {
-    int textMax = m_editor->verticalScrollBar()->maximum();
-    const QString ScrollJavaScript(QStringLiteral("window.scrollTo(0, document.body.scrollHeight * %1 / %2);"));
-    m_webView->page()->runJavaScript(ScrollJavaScript.arg(value).arg(textMax));
+//    int textMax = m_editor->verticalScrollBar()->maximum();
+//    const QString ScrollJavaScript(QStringLiteral("window.scrollTo(0, document.body.scrollHeight * %1 / %2);"));
+//    m_webView->page()->runJavaScript(ScrollJavaScript.arg(value).arg(textMax));
 }
 
 void HtmlViewSynchronizer::htmlContentSizeChanged()
