@@ -294,6 +294,7 @@ void OptionsDialog::readState()
     QFont font = options->editorFont();
     ui->fontComboBox->setCurrentFont(font);
     ui->sizeComboBox->setCurrentText(QString().setNum(font.pointSize()));
+    ui->monoFontComboBox->setCurrentFont(options->editorMonoFont());
     ui->sourceSingleSizedCheckBox->setChecked(options->isSourceAtSingleSizeEnabled());
     ui->tabWidthSpinBox->setValue(options->tabWidth());
     ui->lineColumnCheckBox->setChecked(options->isLineColumnEnabled());
@@ -346,6 +347,9 @@ void OptionsDialog::saveState()
     QFont font = ui->fontComboBox->currentFont();
     font.setPointSize(ui->sizeComboBox->currentText().toInt());
     options->setEditorFont(font);
+    QFont monoFont = ui->monoFontComboBox->currentFont();
+    monoFont.setPointSize(ui->sizeComboBox->currentText().toInt());
+    options->setEditorMonoFont(monoFont);
     options->setSourceAtSingleSizeEnabled(ui->sourceSingleSizedCheckBox->isChecked());
     options->setTabWidth(ui->tabWidthSpinBox->value());
     options->setLineColumnEnabled(ui->lineColumnCheckBox->isChecked());

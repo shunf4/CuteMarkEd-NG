@@ -70,6 +70,7 @@ protected:
 public slots:
     void tabWidthChanged(int tabWidth);
     void editorFontChanged(const QFont &font);
+    void editorMonoFontChanged(const QFont &font);
     void rulerEnabledChanged(bool enabled);
     void rulerPosChanged(int pos);
 

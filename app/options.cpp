@@ -18,6 +18,7 @@
 
 #include <QWebEngineSettings>
 #include <QDir>
+#include <QFontDatabase>
 
 static const QString MARKDOWN_CONVERTER = QStringLiteral("General/converter");
 static const QString LAST_USED_THEME = QStringLiteral("General/lastusedtheme");
@@ -27,6 +28,7 @@ static const QString THEME_DEFAULT = QStringLiteral("Default");
 static const QString FONT_FAMILY_DEFAULT = QStringLiteral("Monospace");
 static const QString FONT_FAMILY = QStringLiteral("editor/font/family");
 static const QString FONT_SIZE = QStringLiteral("editor/font/size");
+static const QString FONT_MONO_FAMILY = QStringLiteral("editor/font/monoFamily");
 static const QString TAB_WIDTH = QStringLiteral("editor/tabwidth");
 static const QString LINECOLUMN_ENABLED = QStringLiteral("editor/linecolumn/enabled");
 static const QString RULER_ENABLED = QStringLiteral("editor/ruler/enabled");
@@ -88,7 +90,8 @@ Options::Options(QObject *parent) :
     m_rulerEnabled(false),
     m_rulerPos(80),
     m_markdownConverter(MD4CMarkdownConverter),
-    m_lastUsedTheme(THEME_DEFAULT)
+    m_lastUsedTheme(THEME_DEFAULT),
+    m_explorerDefaultPath(true)
 {
 }
 
@@ -118,6 +121,17 @@ void Options::setEditorFont(const QFont &font)
 {
     this->font = font;
     emit editorFontChanged(font);
+}
+
+QFont Options::editorMonoFont() const
+{
+    return this->monoFont;
+}
+
+void Options::setEditorMonoFont(const QFont &font)
+{
+    this->monoFont = font;
+    emit editorMonoFontChanged(font);
 }
 
 int Options::tabWidth() const
@@ -531,6 +545,7 @@ void Options::readSettings()
     // editor settings
     QString fontFamily = settings.value(FONT_FAMILY, FONT_FAMILY_DEFAULT).toString();
     int fontSize = settings.value(FONT_SIZE, 10).toInt();
+    QString monoFontFamily = settings.value(FONT_MONO_FAMILY, QFontDatabase::systemFont(QFontDatabase::FixedFont).family()).toString();
 
     m_tabWidth = settings.value(TAB_WIDTH, 8).toInt();
     m_lineColumnEnabled = settings.value(LINECOLUMN_ENABLED, false).toBool();
@@ -540,6 +555,9 @@ void Options::readSettings()
     QFont f(fontFamily, fontSize);
     f.setStyleHint(QFont::TypeWriter);
     setEditorFont(f);
+    QFont mf(monoFontFamily, fontSize);
+    mf.setStyleHint(QFont::Monospace);
+    setEditorMonoFont(mf);
 
     // html preview settings
     QWebEngineSettings *globalWebSettings = QWebEngineSettings::globalSettings();
@@ -609,6 +627,7 @@ void Options::writeSettings()
 
     // editor settings
     settings.setValue(FONT_FAMILY, font.family());
+    settings.setValue(FONT_MONO_FAMILY, monoFont.family());
     settings.setValue(FONT_SIZE, font.pointSize());
     settings.setValue(TAB_WIDTH, m_tabWidth);
     settings.setValue(LINECOLUMN_ENABLED, m_lineColumnEnabled);

@@ -1158,6 +1158,8 @@ void MainWindow::setupMarkdownEditor()
 
     connect(options, &Options::editorFontChanged,
             ui->plainTextEdit, &MarkdownEditor::editorFontChanged);
+    connect(options, &Options::editorMonoFontChanged,
+            ui->plainTextEdit, &MarkdownEditor::editorMonoFontChanged);
     connect(options, &Options::tabWidthChanged,
             ui->plainTextEdit, &MarkdownEditor::tabWidthChanged);
     connect(options, &Options::rulerEnabledChanged,

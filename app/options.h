@@ -160,8 +160,11 @@ public:
     void readSettings();
     void writeSettings();
 
+    void setEditorMonoFont(const QFont &font);
+    QFont editorMonoFont() const;
 signals:
     void editorFontChanged(const QFont &font);
+    void editorMonoFontChanged(const QFont &font);
     void editorStyleChanged();
     void tabWidthChanged(int tabWidth);
     void lineColumnEnabledChanged(bool enabled);
@@ -177,6 +180,7 @@ private:
 
 private:
     QFont font;
+    QFont monoFont;
     int m_tabWidth;
     ProxyMode m_proxyMode;
     QString m_proxyHost;
