@@ -58,7 +58,8 @@ MarkdownEditor::MarkdownEditor(QWidget *parent) :
     lineNumberArea(new LineNumberArea(this)),
     spellChecker(new SpellChecker()),
     completer(0),
-    showHardLinebreaks(false)
+    showHardLinebreaks(false),
+    monoFont()
 {
     highlighter = new CuteMarkdownHighlighter(this->document(), spellChecker);
 
@@ -253,6 +254,7 @@ void MarkdownEditor::editorFontChanged(const QFont &font)
 void MarkdownEditor::editorMonoFontChanged(const QFont &monoFont)
 {
     lineNumberArea->setFont(monoFont);
+    this->monoFont = monoFont;
     highlighter->rehighlight();
 }
 
@@ -454,7 +456,7 @@ void MarkdownEditor::loadGithubEditorStyle() {
 
     format = QTextCharFormat();
     QSettings settings;
-    QFont monoFont(settings.value(QStringLiteral("editor/font/monoFamily"), QFontDatabase::systemFont(QFontDatabase::FixedFont).family()).toString());
+    const QFont &monoFont = this->monoFont;
     format.setFont(monoFont);
     format.setFontPointSize(0);
     highlighter->setTextFormat(MarkdownHighlighter::HighlighterState::CodeBlock, format);
@@ -560,7 +562,7 @@ void MarkdownEditor::loadNormalEditorStyle() {
 
     format = QTextCharFormat();
     QSettings settings;
-    QFont monoFont(settings.value(QStringLiteral("editor/font/monoFamily"), QFontDatabase::systemFont(QFontDatabase::FixedFont).family()).toString());
+    const QFont &monoFont = this->monoFont;
     format.setFont(monoFont);
     format.setFontPointSize(0);
     highlighter->setTextFormat(MarkdownHighlighter::HighlighterState::CodeBlock, format);

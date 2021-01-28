@@ -102,6 +102,7 @@ private:
     bool showHardLinebreaks;
     bool rulerEnabled;
     int rulerPos;
+    QFont monoFont;
 };
 
 #endif // MARKDOWNEDITOR_H
