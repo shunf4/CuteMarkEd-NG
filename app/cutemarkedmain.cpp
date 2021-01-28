@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QStringLiteral("CuteMarkEd Project"));
     app.setApplicationName(QStringLiteral("CuteMarkEd"));
     app.setApplicationDisplayName(QStringLiteral("CuteMarkEd"));
-    app.setApplicationVersion(QStringLiteral("0.11.3-shunf4-4"));
+    app.setApplicationVersion(QStringLiteral("0.11.3-shunf4-5"));
 
 #ifdef Q_OS_WIN
     QStringList fileTypes;
